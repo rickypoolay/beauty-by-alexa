@@ -39,7 +39,7 @@ function Navbar() {
                 animate={{ x: 0 }}
                 exit={{ x: -700 }}
                 transition={{ ease: "easeInOut", duration: 0.5 }}
-                className="px-8 py-4 z-50 bg-white h-full w-[80%]"
+                className="px-8 py-4 z-50 bg-custom-background h-full w-[80%]"
               >
                 <div className="flex items-center justify-between mb-10">
                   <button onClick={() => setMenuToggle(false)}>
@@ -109,11 +109,12 @@ function Navbar() {
         >
           Beauty By Alexa
         </h1>
+
         {/* Desktop List */}
         <div className="hidden sm:flex  space-x-5 items-center -order-1">
           <button
-            className="cursor-pointer font-extralight"
             onClick={() => router.push("/")}
+            className="cursor-pointer font-extralight"
           >
             Home
           </button>
@@ -132,12 +133,17 @@ function Navbar() {
         </div>
         <ul className="hidden sm:flex font-extralight space-x-3 justify-end items-center">
           <button
-            className="font-extralight cursor-pointer"
             onClick={() => router.push("/about")}
+            className="font-extralight cursor-pointer"
           >
             About
           </button>
-          <button className="button px-4 py-1">Schedule</button>
+          <button
+            onClick={() => router.push("/schedule")}
+            className="button px-4 py-1"
+          >
+            Schedule
+          </button>
         </ul>
       </div>
     </nav>

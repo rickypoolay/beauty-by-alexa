@@ -5,8 +5,11 @@ import { INITIAL_LOADED } from "../context/page-load-actions";
 import { pageLoadContext } from "../context/page-load-context";
 import { LocationMarkerIcon } from "@heroicons/react/solid";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 function DesktopLanding() {
+  const router = useRouter();
+
   const { initialLoad, dispatch } = useContext(pageLoadContext);
   const container = {
     show: {
@@ -90,6 +93,7 @@ function DesktopLanding() {
 
         {/* Button */}
         <motion.button
+          onClick={() => router.push("/schedule")}
           initial={{ y: !initialLoad ? 100 : 0, opacity: !initialLoad ? 0 : 1 }}
           animate={{
             y: 0,
