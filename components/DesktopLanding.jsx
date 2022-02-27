@@ -1,4 +1,4 @@
-import { animate, motion } from "framer-motion";
+import { animate, m, motion } from "framer-motion";
 import Image from "next/image";
 import { useContext } from "react";
 import { INITIAL_LOADED } from "../context/page-load-actions";
