@@ -92,30 +92,39 @@ function DesktopLanding() {
         </motion.p>
 
         {/* Button */}
-        <motion.button
-          onClick={() => router.push("/schedule")}
-          initial={{ y: !initialLoad ? 100 : 0, opacity: !initialLoad ? 0 : 1 }}
-          animate={{
-            y: 0,
-            opacity: 1,
-            transition: {
-              delay: 2,
-              ease: [0.6, 0.01, -0.05, 0.95],
-              duration: 1,
-            },
-          }}
-          whileHover={{
-            scale: 1.05,
-            boxShadow: "0px 5px 11px -3px rgba(0,0,0,0.5)",
-            transition: {
-              duration: 0.5,
-              ease: [0.6, 0.01, -0.05, 0.95],
-            },
-          }}
-          className="button px-5 py-3 text-xs xs:text-xl md:text-2xl md:px-10 md:py-6 lg:px-16 lg:py-8 lg:text-[1.75rem] xl:text-[2rem]"
+        <Link
+          passHref
+          href={
+            "https://squareup.com/appointments/book/5srybhzsglb2ob/LVVGPZWA4433S/start"
+          }
         >
-          Schedule
-        </motion.button>
+          <motion.button
+            initial={{
+              y: !initialLoad ? 100 : 0,
+              opacity: !initialLoad ? 0 : 1,
+            }}
+            animate={{
+              y: 0,
+              opacity: 1,
+              transition: {
+                delay: 2,
+                ease: [0.6, 0.01, -0.05, 0.95],
+                duration: 1,
+              },
+            }}
+            whileHover={{
+              scale: 1.05,
+              boxShadow: "0px 5px 11px -3px rgba(0,0,0,0.5)",
+              transition: {
+                duration: 0.5,
+                ease: [0.6, 0.01, -0.05, 0.95],
+              },
+            }}
+            className="button px-5 py-3 text-xs xs:text-xl md:text-2xl md:px-10 md:py-6 lg:px-16 lg:py-8 lg:text-[1.75rem] xl:text-[2rem]"
+          >
+            Schedule
+          </motion.button>
+        </Link>
       </motion.div>
     </motion.div>
   );

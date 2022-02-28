@@ -8,7 +8,7 @@ function Navbar() {
   const router = useRouter();
   const [menuToggle, setMenuToggle] = useState(false);
   return (
-    <nav className="border-b border-b-custom-black bg-custom-background text-custom-black sticky top-0 z-50">
+    <nav className="border-b border-b-custom-black bg-custom-background text-custom-black sticky top-0 z-50 shadow-md">
       <div className="flex px-8 py-4 justify-center items-center mx-auto max-w-7xl sm:grid sm:grid-cols-3">
         {/* Mobile Menu Icon */}
         <div
@@ -86,14 +86,20 @@ function Navbar() {
                       About
                     </a>
                   </Link>
-                  <button
-                    onClick={() => router.push("/schedule")}
-                    className={`button py-7 w-full text-4xl ${
-                      router.pathname == "/schedule" && "underline"
-                    }`}
+                  <Link
+                    passHref
+                    href={
+                      "https://squareup.com/appointments/book/5srybhzsglb2ob/LVVGPZWA4433S/start"
+                    }
                   >
-                    Schedule
-                  </button>
+                    <button
+                      className={`button py-7 w-full text-4xl ${
+                        router.pathname == "/schedule" && "underline"
+                      }`}
+                    >
+                      Schedule
+                    </button>
+                  </Link>
                 </div>
               </motion.section>
             </motion.div>
@@ -138,12 +144,15 @@ function Navbar() {
           >
             About
           </button>
-          <button
-            onClick={() => router.push("/schedule")}
-            className="button px-4 py-1"
+
+          <Link
+            passHref
+            href={
+              "https://squareup.com/appointments/book/5srybhzsglb2ob/LVVGPZWA4433S/start"
+            }
           >
-            Schedule
-          </button>
+            <button className="button px-4 py-1">Schedule</button>
+          </Link>
         </ul>
       </div>
     </nav>
