@@ -1,8 +1,7 @@
 import { motion } from "framer-motion";
 import Head from "next/head";
 import Image from "next/image";
-import { useContext, useEffect } from "react";
-import CardBig from "../components/CardBig";
+import { useContext } from "react";
 import CardSmall from "../components/CardSmall";
 import DesktopLanding from "../components/DesktopLanding";
 import LeftLine from "../components/LeftLine";

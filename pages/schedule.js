@@ -1,10 +1,14 @@
 import Head from "next/head";
-import Script from "next/script";
+import { useEffect } from "react";
+import { BookingsApi, Client } from "square";
 import LeftLine from "../components/LeftLine";
 import Navbar from "../components/Navbar";
 import PageHeader from "../components/PageHeader";
 
 function Schedule() {
+  const bookingsAPI = Client.bookingsApi;
+  console.log(bookingsAPI);
+
   return (
     <div>
       <Head>

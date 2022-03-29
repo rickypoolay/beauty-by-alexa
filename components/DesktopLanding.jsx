@@ -38,7 +38,7 @@ function DesktopLanding() {
       <motion.div variants={container} initial="hidden" animate="show">
         {/* Location */}
         <motion.div
-          className="flex flex-col sm:flex-row items-center justify-center sm:justify-start mb-20 sm:mb-0 hover:underline  decoration-transparent "
+          className="flex flex-col sm:flex-row items-center justify-center sm:justify-start mb-20 sm:mb-0 hover:underline decoration-transparent"
           initial={{
             opacity: !initialLoad ? 0 : 1,
           }}
@@ -49,17 +49,20 @@ function DesktopLanding() {
             delay: 2,
           }}
           whileHover={{
-            textDecorationColor: "black",
+            textDecorationColor: "rgba(0,0,0)",
             transition: {
               delay: 0,
             },
           }}
-          while
         >
           <LocationMarkerIcon className="w-3 h-3 hidden sm:block md:w-6 md:h-6 xl:w-8 xl:h-8 mb-1 mr-1.5" />
-          <Link href="https://www.google.com/maps/place/The+Cove+Day+Spa/@40.0049002,-83.1546298,16z/data=!4m5!3m4!1s0x8838913810b6fe47:0x65998491897b689b!8m2!3d40.0044425!4d-83.1521731">
+          <a
+            target="_blank"
+            rel="noreferrer"
+            href="https://www.google.com/maps/place/The+Cove+Day+Spa/@40.0049002,-83.1546298,16z/data=!4m5!3m4!1s0x8838913810b6fe47:0x65998491897b689b!8m2!3d40.0044425!4d-83.1521731"
+          >
             5382 Roberts Rd. Hilliard, OH, 43026 | Cove Day Spa
-          </Link>
+          </a>
         </motion.div>
 
         {/* Title */}
@@ -92,39 +95,38 @@ function DesktopLanding() {
         </motion.p>
 
         {/* Button */}
-        <Link
-          passHref
-          href={
-            "https://squareup.com/appointments/book/5srybhzsglb2ob/LVVGPZWA4433S/start"
+
+        <motion.button
+          onClick={() =>
+            window.open(
+              "https://squareup.com/appointments/book/5srybhzsglb2ob/LVVGPZWA4433S/start"
+            )
           }
+          initial={{
+            y: !initialLoad ? 100 : 0,
+            opacity: !initialLoad ? 0 : 1,
+          }}
+          animate={{
+            y: 0,
+            opacity: 1,
+            transition: {
+              delay: 2,
+              ease: [0.6, 0.01, -0.05, 0.95],
+              duration: 1,
+            },
+          }}
+          whileHover={{
+            scale: 1.05,
+            boxShadow: "0px 5px 11px -3px rgba(0,0,0,0.5)",
+            transition: {
+              duration: 0.5,
+              ease: [0.6, 0.01, -0.05, 0.95],
+            },
+          }}
+          className="button px-5 py-3 text-xs xs:text-xl md:text-2xl md:px-10 md:py-6 lg:px-16 lg:py-8 lg:text-[1.75rem] xl:text-[2rem]"
         >
-          <motion.button
-            initial={{
-              y: !initialLoad ? 100 : 0,
-              opacity: !initialLoad ? 0 : 1,
-            }}
-            animate={{
-              y: 0,
-              opacity: 1,
-              transition: {
-                delay: 2,
-                ease: [0.6, 0.01, -0.05, 0.95],
-                duration: 1,
-              },
-            }}
-            whileHover={{
-              scale: 1.05,
-              boxShadow: "0px 5px 11px -3px rgba(0,0,0,0.5)",
-              transition: {
-                duration: 0.5,
-                ease: [0.6, 0.01, -0.05, 0.95],
-              },
-            }}
-            className="button px-5 py-3 text-xs xs:text-xl md:text-2xl md:px-10 md:py-6 lg:px-16 lg:py-8 lg:text-[1.75rem] xl:text-[2rem]"
-          >
-            Schedule
-          </motion.button>
-        </Link>
+          Schedule
+        </motion.button>
       </motion.div>
     </motion.div>
   );

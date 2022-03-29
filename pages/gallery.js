@@ -1,15 +1,22 @@
-import { XIcon } from "@heroicons/react/solid";
-import { motion, transform } from "framer-motion";
+import { ArrowLeftIcon, ArrowRightIcon, XIcon } from "@heroicons/react/solid";
+import { motion } from "framer-motion";
 import Head from "next/head";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import LeftLine from "../components/LeftLine";
 import Navbar from "../components/Navbar";
 import PageHeader from "../components/PageHeader";
 import { galleryImages } from "../data";
 function Gallery() {
   const [selectedIMG, setSelectedIMG] = useState();
-  console.log(galleryImages.findIndex((item) => item.src == selectedIMG));
+
+  // const [selectedIndex, setSelectedIndex] = useState();
+
+  // useEffect(() => {
+  //   setSelectedIndex(
+  //     galleryImages.findIndex((item) => item.src == selectedIMG)
+  //   );
+  // }, [selectedIMG]);
 
   return (
     <div className="relative">
@@ -24,33 +31,61 @@ function Gallery() {
 
         {/* Popup Image */}
         {selectedIMG && (
-          <div className="fixed top-0 z-50 w-[100vw] h-[100vh]  flex justify-center items-center backdrop-blur-sm">
-            <div
-              className="absolute w-[100vw] h-[100vh] bg-custom-black bg-opacity-60 "
-              onClick={() => setSelectedIMG()}
-            />
+          <div className="fixed top-0 z-50 w-[100vw] h-[100vh] flex justify-center items-center backdrop-blur-sm select-none">
+            <div className="absolute w-[100vw] h-[100vh] bg-custom-black bg-opacity-60 " />
             <XIcon
-              className="w-10 h-10 absolute top-10 right-10 cursor-pointer"
+              className="w-12 h-12 absolute top-10 right-10 cursor-pointer z-10 p-2 border rounded-full xl:scale-150 bg-opacity-10 bg-white"
               onClick={() => setSelectedIMG()}
             />
-            <div className="relative w-3/4 h-3/4 bg-custom-black bg-opacity-20">
+            <ArrowLeftIcon
+              className="absolute text-white z-50 w-12 h-12 p-2 border rounded-full left-5 lg:left-[10vw] xl:scale-150 cursor-pointer shadow-2xl bg-white bg-opacity-10"
+              onClick={() => {
+                const selectedIndex = galleryImages.findIndex(
+                  (item) => item == selectedIMG
+                );
+
+                console.log(selectedIndex);
+
+                if (selectedIndex <= 0) {
+                  setSelectedIMG(galleryImages[galleryImages.length]);
+                } else {
+                  setSelectedIMG(galleryImages[selectedIndex - 1]);
+                }
+              }}
+            />
+            <ArrowRightIcon
+              className="absolute text-white z-50 w-12 h-12 p-2 border rounded-full right-5 lg:right-[10vw] xl:scale-150 cursor-pointer shadow-2xl bg-white bg-opacity-10"
+              onClick={() => {
+                const selectedIndex = galleryImages.findIndex(
+                  (item) => item.src == selectedIMG.src
+                );
+
+                if (selectedIndex == galleryImages.length) {
+                  setSelectedIMG(galleryImages[0]);
+                } else {
+                  setSelectedIMG(galleryImages[selectedIndex + 1]);
+                }
+              }}
+            />
+            <div className="relative w-full h-3/4">
               <Image
                 priority
                 layout="fill"
                 objectFit="contain"
-                src={selectedIMG}
+                src={selectedIMG.src}
                 alt=""
               />
             </div>
           </div>
         )}
+        {/*  */}
         <section>
           <PageHeader title={"Gallery"} info={"Showcase of work"} />
 
-          <div className="grid grid-cols-2 sm:grid-cols-3  gap-y-3 gap-x-3 justify-center items-center mt-5">
+          <div className="grid grid-cols-2 sm:grid-cols-3  gap-y-1 gap-x-1 justify-center items-center mt-5">
             {galleryImages.map((img) => (
-              <motion.div
-                className="relative rounded-sm min-w-[100px] w-full h-full overflow-hidden mx-auto p-3 cursor-pointer "
+              <div
+                className="relative rounded-sm min-w-[100px] w-full h-full overflow-hidden mx-auto p-3 cursor-pointer"
                 key={img.src}
                 whileHover={{
                   scale: 1.1,
@@ -58,7 +93,7 @@ function Gallery() {
                     ease: [0.6, 0.01, -0.05, 0.95],
                   },
                 }}
-                onClick={() => setSelectedIMG(img.src)}
+                onClick={() => setSelectedIMG(img)}
               >
                 <div>
                   <Image
@@ -67,10 +102,10 @@ function Gallery() {
                     layout="responsive"
                     objectFit="cover"
                     src={img.src}
-                    alt=""
+                    alt={img.caption}
                   />
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </section>

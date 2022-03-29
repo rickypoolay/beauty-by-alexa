@@ -8,8 +8,6 @@ function MyApp({ Component, pageProps }) {
     accessToken: process.env.SQUARE_ACCESS_TOKEN,
   });
 
-  console.log(client);
-
   return (
     <PageLoadState>
       <Component {...pageProps} />

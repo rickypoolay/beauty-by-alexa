@@ -26,7 +26,7 @@ function Services() {
         <section>
           <PageHeader
             title={"Services"}
-            info={"Find what you need and prices."}
+            info={"Find the prices you like for the the things you need."}
           />
           <div className="flex space-x-10 overflow-x-auto overflow-y-hidden p-2 text-custom-black text-xl sticky top-16 mb-5 whitespace-nowrap border-b border-custom-black z-20 bg-custom-background">
             {/* maps every object/category creating a button. Within this button it has an onclick of setting that specific category object of data to send to the useState 'selected'.*/}

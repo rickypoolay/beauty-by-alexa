@@ -8,7 +8,7 @@ function Navbar() {
   const router = useRouter();
   const [menuToggle, setMenuToggle] = useState(false);
   return (
-    <nav className="border-b border-b-custom-black bg-custom-background text-custom-black sticky top-0 z-50 shadow-md">
+    <nav className="border-b border-b-custom-black bg-custom-background text-custom-black sticky top-0 z-50 shadow-sm">
       <div className="flex px-8 py-4 justify-center items-center mx-auto max-w-7xl sm:grid sm:grid-cols-3">
         {/* Mobile Menu Icon */}
         <div
@@ -145,14 +145,19 @@ function Navbar() {
             About
           </button>
 
-          <Link
+          {/* <Link
             passHref
             href={
               "https://squareup.com/appointments/book/5srybhzsglb2ob/LVVGPZWA4433S/start"
             }
+          > */}
+          <button
+            className="button px-4 py-1"
+            onClick={() => router.push("/schedule")}
           >
-            <button className="button px-4 py-1">Schedule</button>
-          </Link>
+            Schedule
+          </button>
+          {/* </Link> */}
         </ul>
       </div>
     </nav>
