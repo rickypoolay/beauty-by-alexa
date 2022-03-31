@@ -1,6 +1,6 @@
 function PageHeader({ title, info }) {
   return (
-    <div className="relative px-5 py-5 border-b border-custom-black pb-7">
+    <div className="relative py-5 border-b border-custom-black pb-4">
       {/* <Image
     className="-z-10 brightness-[35%]"
     src={

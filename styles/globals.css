@@ -52,4 +52,8 @@
   .button {
     @apply bg-custom-btn rounded-sm text-white;
   }
+
+  .social-icon {
+    @apply relative w-6 h-6 mr-2 lg:w-10 lg:h-10;
+  }
 }

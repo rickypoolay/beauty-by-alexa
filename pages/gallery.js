@@ -18,6 +18,8 @@ function Gallery() {
   //   );
   // }, [selectedIMG]);
 
+  const nextIMG = () => {};
+
   return (
     <div className="relative">
       <Navbar />
@@ -84,7 +86,7 @@ function Gallery() {
 
           <div className="grid grid-cols-2 sm:grid-cols-3  gap-y-1 gap-x-1 justify-center items-center mt-5">
             {galleryImages.map((img) => (
-              <div
+              <motion.div
                 className="relative rounded-sm min-w-[100px] w-full h-full overflow-hidden mx-auto p-3 cursor-pointer"
                 key={img.src}
                 whileHover={{
@@ -105,7 +107,7 @@ function Gallery() {
                     alt={img.caption}
                   />
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </section>

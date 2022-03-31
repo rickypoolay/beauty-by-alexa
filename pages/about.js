@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Image from "next/image";
 import LeftLine from "../components/LeftLine";
 import Navbar from "../components/Navbar";
 import PageHeader from "../components/PageHeader";
@@ -15,7 +16,97 @@ function About() {
       <main>
         <LeftLine />
         <section>
-          <PageHeader title={"About"} info={"this is the about page"} />
+          <PageHeader title={"About"} info={""} />
+
+          <div className="mt-5 sm:grid sm:grid-cols-2 sm:mt-20">
+            <div className="ml-auto relative w-2/4 sm:w-4/5 h-72 sm:max-w-sm sm:h-full overflow-hidden rounded-sm order-1 sm:my-auto">
+              <Image
+                src={
+                  "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cG9ydHJhaXR8ZW58MHx8MHx8&auto=format&fit=crop&w=1000&q=60"
+                }
+                alt=""
+                layout="fill"
+                objectFit="cover"
+              />
+            </div>
+
+            <div className="text-custom-black -mt-14 sm:mt-0">
+              <div className="md:flex md:flex-row mb-4">
+                <p className="mb-2 order-1 mt-auto h-auto sm:leading-9 ml-3">
+                  Esthetician
+                </p>
+                <h1 className="leading-[2.75rem] mb-2">
+                  Alexa
+                  <br />
+                  Beerman
+                </h1>
+              </div>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit ut
+                aliquam, purus sit amet luctus venenatis. Lorem ipsum dolor sit
+                amet, consectetur adipiscing elit ut aliquam, purus sit amet
+                luctus venenatis.
+              </p>
+
+              <div className="mt-auto">
+                <h3 className="mt-10">Socials</h3>
+                <div className="space-y-2">
+                  <div className="flex items-center">
+                    {/* Instagram */}
+                    <div className="social-icon">
+                      <Image
+                        src={"/icons/instagram.svg"}
+                        layout="fill"
+                        objectFit="contain"
+                        alt=""
+                      />
+                    </div>
+                    <a
+                      className="text-md hover:underline"
+                      href="https://www.instagram.com/beauty_byalexa_/"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      @beauty_byalexa_
+                    </a>
+                  </div>
+
+                  {/* Mail */}
+                  <div className="flex items-center">
+                    <div className="social-icon">
+                      <Image
+                        src={"/icons/mail.svg"}
+                        layout="fill"
+                        objectFit="contain"
+                        alt=""
+                      />
+                    </div>
+                    <a className="text-md">example@example.com</a>
+                  </div>
+
+                  {/* Location */}
+                  <div className="flex items-center">
+                    <div className="social-icon mb-auto">
+                      <Image
+                        src={"/icons/map-pin.svg"}
+                        layout="fill"
+                        objectFit="contain"
+                        alt=""
+                      />
+                    </div>
+                    <a
+                      className="text-md hover:underline"
+                      target="_blank"
+                      rel="noreferrer"
+                      href="https://www.google.com/maps/place/The+Cove+Day+Spa/@40.0049002,-83.1546298,16z/data=!4m5!3m4!1s0x8838913810b6fe47:0x65998491897b689b!8m2!3d40.0044425!4d-83.1521731"
+                    >
+                      5382 Roberts Rd. Hilliard, OH, 43026
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
       </main>
     </div>
