@@ -103,6 +103,7 @@ function Gallery() {
                     height={"100%"}
                     layout="responsive"
                     objectFit="cover"
+                    b
                     src={img.src}
                     alt={img.caption}
                   />

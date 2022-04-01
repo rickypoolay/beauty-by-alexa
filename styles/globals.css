@@ -54,6 +54,6 @@
   }
 
   .social-icon {
-    @apply relative w-6 h-6 mr-2 lg:w-10 lg:h-10;
+    @apply relative w-6 h-6 mr-2 lg:w-9 lg:h-9 mb-auto;
   }
 }

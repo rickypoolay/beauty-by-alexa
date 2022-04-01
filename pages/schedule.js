@@ -4,11 +4,9 @@ import { BookingsApi, Client } from "square";
 import LeftLine from "../components/LeftLine";
 import Navbar from "../components/Navbar";
 import PageHeader from "../components/PageHeader";
+import ScheduleStep from "../components/Step";
 
 function Schedule() {
-  const bookingsAPI = Client.bookingsApi;
-  console.log(bookingsAPI);
-
   return (
     <div>
       <Head>
@@ -20,8 +18,61 @@ function Schedule() {
       <Navbar />
       <main>
         <LeftLine />
-        <section>
-          <PageHeader title={"Schedule"} info={"schedule here"} />
+        <section className="text-custom-black">
+          <PageHeader title={"Schedule"} />
+          <div className="text-center mt-4">
+            <p>
+              <strong>You will be redirected to Schedulicity</strong> to
+              schedule your appointment with Alexa!
+            </p>
+            <p className="mt-3">Please follow the steps below</p>
+          </div>
+
+          <div className="mt-10 space-y-2">
+            <ScheduleStep
+              number={1}
+              info={
+                <p>
+                  Click on a drop down menu that displays{" "}
+                  <strong>&quot;All Providers&quot;</strong>
+                </p>
+              }
+            />
+            <ScheduleStep
+              number={2}
+              info={
+                <p>
+                  Select <strong>&quot;Alexa&quot;</strong>
+                </p>
+              }
+            />
+            <ScheduleStep
+              number={3}
+              info={
+                <p>
+                  Click <strong>&quot;Add to visit&quot;</strong> for your
+                  desired service.
+                </p>
+              }
+            />
+            <ScheduleStep
+              number={4}
+              info={
+                <p>
+                  Select <strong>&quot;Alexa&quot;</strong> as a provider.
+                </p>
+              }
+            />
+            <ScheduleStep
+              number={5}
+              info={
+                <p>
+                  Click <strong>&quot;Choose date and time&quot;</strong> to
+                  schedule
+                </p>
+              }
+            />
+          </div>
         </section>
       </main>
     </div>

@@ -86,20 +86,21 @@ function Navbar() {
                       About
                     </a>
                   </Link>
-                  <Link
+                  {/* <Link
                     passHref
                     href={
                       "https://squareup.com/appointments/book/5srybhzsglb2ob/LVVGPZWA4433S/start"
                     }
+                  > */}
+                  <button
+                    className={`button py-7 w-full text-4xl ${
+                      router.pathname == "/schedule" && "underline"
+                    }`}
+                    onClick={() => router.push("/schedule")}
                   >
-                    <button
-                      className={`button py-7 w-full text-4xl ${
-                        router.pathname == "/schedule" && "underline"
-                      }`}
-                    >
-                      Schedule
-                    </button>
-                  </Link>
+                    Schedule
+                  </button>
+                  {/* </Link> */}
                 </div>
               </motion.section>
             </motion.div>

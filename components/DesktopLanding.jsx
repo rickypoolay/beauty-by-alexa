@@ -97,11 +97,7 @@ function DesktopLanding() {
         {/* Button */}
 
         <motion.button
-          onClick={() =>
-            window.open(
-              "https://squareup.com/appointments/book/5srybhzsglb2ob/LVVGPZWA4433S/start"
-            )
-          }
+          onClick={() => router.push("/schedule")}
           initial={{
             y: !initialLoad ? 100 : 0,
             opacity: !initialLoad ? 0 : 1,
