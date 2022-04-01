@@ -85,7 +85,7 @@ function Schedule() {
           </div>
           <div className="flex justify-center flex-col items-center mb-5">
             <motion.a
-              className="button w-full sm:w-60 mx-auto py-4 sm:py-6 text-center"
+              className="button w-full sm:w-60 mx-auto py-4 sm:py-6 text-center font-bold"
               href="https://www.schedulicity.com/scheduling/tcw3sb/services"
               target="_blank"
               rel="noreferrer"
