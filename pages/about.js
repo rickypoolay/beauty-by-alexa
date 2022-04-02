@@ -4,6 +4,9 @@ import IconSocial from "../components/IconSocial";
 import LeftLine from "../components/LeftLine";
 import Navbar from "../components/Navbar";
 import PageHeader from "../components/PageHeader";
+import { FaEnvelope } from "react-icons/fa";
+import { AiFillInstagram, AiFillMail } from "react-icons/ai";
+import { RiMapPin2Fill } from "react-icons/ri";
 
 function About() {
   return (
@@ -51,18 +54,18 @@ function About() {
                 <h3 className=" sm:text-[2.25rem] mb-2">Socials</h3>
                 <div className="space-y-2">
                   <IconSocial
-                    icon={"/icons/instagram.svg"}
+                    icon={<AiFillInstagram className="" />}
                     text={"@beauty_byalexa_"}
                     href={"https://www.instagram.com/beauty_byalexa_/"}
                   />
 
                   <IconSocial
-                    icon={"/icons/mail.svg"}
+                    icon={<AiFillMail className="" />}
                     text={"example@example.com"}
                   />
 
                   <IconSocial
-                    icon={"/icons/map-pin.svg"}
+                    icon={<RiMapPin2Fill className="sm:-mt-1" />}
                     text={"5382 Roberts Rd. Hilliard, OH, 43026"}
                     href={
                       "https://www.google.com/maps/place/The+Cove+Day+Spa/@40.0049002,-83.1546298,16z/data=!4m5!3m4!1s0x8838913810b6fe47:0x65998491897b689b!8m2!3d40.0044425!4d-83.1521731"

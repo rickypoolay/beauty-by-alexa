@@ -54,7 +54,7 @@
   }
 
   .social-icon {
-    @apply relative w-6 h-6 mr-2 lg:w-9 lg:h-9 mb-auto;
+    @apply flex justify-center items-center text-xl text-center mr-2 lg:text-2xl xl:text-3xl xl:mt-0 sm:mt-1.5 mb-auto;
   }
 
   .step-text {

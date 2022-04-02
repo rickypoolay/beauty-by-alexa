@@ -5,7 +5,8 @@ function IconSocial({ icon, text, href }) {
     <div className="flex items-center justify-center sm:justify-start">
       {/* Instagram */}
       <div className={`social-icon`}>
-        <Image src={icon} layout="fill" objectFit="contain" alt="" />
+        {icon}
+        {/* <Image src={icon} layout="fill" objectFit="contain" alt="" /> */}
       </div>
 
       {href ? (
