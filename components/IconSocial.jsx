@@ -2,7 +2,7 @@ import Image from "next/image";
 
 function IconSocial({ icon, text, href }) {
   return (
-    <div className="flex items-center justify-center sm:justify-start">
+    <div className="flex items-center justify-start sm:justify-start">
       {/* Instagram */}
       <div className={`social-icon`}>
         {icon}

@@ -39,10 +39,10 @@ function About({ properties }) {
               {/* Info Container */}
               <div className="sm:min-h-[300px]">
                 <div className="mb-4">
-                  <p className="order-1 mt-auto mb-2 h-auto rounded-full inline-block">
+                  <p className="order-1 mt-auto h-auto font-normal inline-block">
                     {props.jobTitle}
                   </p>
-                  <h1 className="leading-[2.75rem] mt-2 w-full">
+                  <h1 className="leading-[2.75rem] mb-4 md:mb-6 w-full">
                     {props.name}
                   </h1>
                 </div>
@@ -51,7 +51,7 @@ function About({ properties }) {
 
               {/* Socials Container */}
               <div className="mt-14">
-                <h3 className=" sm:text-[2.25rem] mb-2">Contacts</h3>
+                <h3 className=" sm:text-[2.25rem] text-left mb-2">Contacts</h3>
                 <div className="space-y-2">
                   <IconSocial
                     icon={<AiFillInstagram className="" />}

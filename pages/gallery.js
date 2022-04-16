@@ -10,7 +10,6 @@ import { sanityClient, urlFor } from "../utils/sanity";
 
 function Gallery({ properties }) {
   const [selectedIMG, setSelectedIMG] = useState();
-  console.log(properties);
 
   return (
     <div className="relative">
@@ -59,11 +58,12 @@ function Gallery({ properties }) {
                 }
               }}
             /> */}
-            <div className="relative w-full h-5/6 mx-2 mt-auto mb-10">
-              <p className="absolute left-1/2 -top-14 -translate-x-1/2 italic">
-                {selectedIMG.caption}
-              </p>
+            <p className="z-10 absolute left-1/2 top-12 md:top-10 -translate-x-1/2 italic text-custom-black p-2 bg-custom-background rounded-full">
+              {selectedIMG.caption}
+            </p>
+            <div className=" relative w-full h-5/6 mx-2 mt-auto mb-10">
               <Image
+                className=""
                 priority
                 layout="fill"
                 objectFit="contain"
@@ -73,6 +73,7 @@ function Gallery({ properties }) {
             </div>
           </div>
         )}
+
         <section>
           <PageHeader title={"Gallery"} info={""} />
 
@@ -82,7 +83,7 @@ function Gallery({ properties }) {
                 className="relative rounded-sm min-w-[100px] w-full h-full overflow-hidden mx-auto p-3 cursor-pointer"
                 key={img.src}
                 whileHover={{
-                  scale: 1.1,
+                  scale: 1.03,
                   transition: {
                     ease: [0.6, 0.01, -0.05, 0.95],
                   },
@@ -99,7 +100,7 @@ function Gallery({ properties }) {
                     src={urlFor(img.image).url()}
                     alt={img.caption}
                   />
-                  <p className=" text-center pt-1 text-black text-sm md:text-lg font-bold">
+                  <p className="text-center pt-1 text-black text-sm md:text-lg font-bold">
                     {img.caption}
                   </p>
                 </div>
