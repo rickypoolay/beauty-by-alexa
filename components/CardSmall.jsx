@@ -72,18 +72,20 @@ function CardSmall({ title, desc, toRoute, img }) {
           >
             {title}
           </motion.h3>
-          <motion.p
-            variants={onHoverTextFadeUp}
-            animate="show"
-            transition={{
-              duration: isHovered ? 0.5 : 0,
+          {desc && (
+            <motion.p
+              variants={onHoverTextFadeUp}
+              animate="show"
+              transition={{
+                duration: isHovered ? 0.5 : 0,
 
-              ease: [0.6, 0.01, -0.05, 0.95],
-              delay: 0.075,
-            }}
-          >
-            {desc}
-          </motion.p>
+                ease: [0.6, 0.01, -0.05, 0.95],
+                delay: 0.075,
+              }}
+            >
+              {desc}
+            </motion.p>
+          )}
         </motion.div>
         <motion.div
           animate={{ x: isHovered ? 0 : "250%" }}
@@ -104,7 +106,7 @@ function CardSmall({ title, desc, toRoute, img }) {
       >
         <motion.div className="w-2/3">
           <motion.h3>{title}</motion.h3>
-          <motion.p>{desc}</motion.p>
+          {/* {desc && <motion.p className="leading-[17.5px]">{desc}</motion.p>} */}
         </motion.div>
         <motion.div>
           <ArrowRightIcon className="rounded-full border w-8 h-8 p-1 md:mr-10 md:w-10 md:h-10" />

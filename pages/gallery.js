@@ -6,19 +6,11 @@ import { useState, useEffect } from "react";
 import LeftLine from "../components/LeftLine";
 import Navbar from "../components/Navbar";
 import PageHeader from "../components/PageHeader";
-import { galleryImages } from "../data";
-function Gallery() {
+import { sanityClient, urlFor } from "../utils/sanity";
+
+function Gallery({ properties }) {
   const [selectedIMG, setSelectedIMG] = useState();
-
-  // const [selectedIndex, setSelectedIndex] = useState();
-
-  // useEffect(() => {
-  //   setSelectedIndex(
-  //     galleryImages.findIndex((item) => item.src == selectedIMG)
-  //   );
-  // }, [selectedIMG]);
-
-  const nextIMG = () => {};
+  console.log(properties);
 
   return (
     <div className="relative">
@@ -39,53 +31,53 @@ function Gallery() {
               className="w-12 h-12 absolute top-10 right-10 cursor-pointer z-10 p-2 border rounded-full xl:scale-150 bg-opacity-10 bg-white"
               onClick={() => setSelectedIMG()}
             />
-            <ArrowLeftIcon
+            {/* <ArrowLeftIcon
               className="absolute text-white z-50 w-12 h-12 p-2 border rounded-full left-5 lg:left-[10vw] xl:scale-150 cursor-pointer shadow-2xl bg-white bg-opacity-10"
               onClick={() => {
-                const selectedIndex = galleryImages.findIndex(
-                  (item) => item == selectedIMG
+                const selectedIndex = properties.findIndex(
+                  (item) => (item = properties)
                 );
 
-                console.log(selectedIndex);
-
-                if (selectedIndex <= 0) {
-                  setSelectedIMG(galleryImages[galleryImages.length]);
+                if (selectedIndex < 1) {
+                  setSelectedIMG(properties[properties.length]);
                 } else {
-                  setSelectedIMG(galleryImages[selectedIndex - 1]);
+                  setSelectedIMG(properties[selectedIndex - 1]);
                 }
               }}
-            />
-            <ArrowRightIcon
+            /> */}
+            {/* <ArrowRightIcon
               className="absolute text-white z-50 w-12 h-12 p-2 border rounded-full right-5 lg:right-[10vw] xl:scale-150 cursor-pointer shadow-2xl bg-white bg-opacity-10"
               onClick={() => {
-                const selectedIndex = galleryImages.findIndex(
-                  (item) => item.src == selectedIMG.src
+                const selectedIndex = properties.findIndex(
+                  (item) => (item = properties)
                 );
 
-                if (selectedIndex == galleryImages.length) {
-                  setSelectedIMG(galleryImages[0]);
+                if (selectedIndex == properties.length) {
+                  setSelectedIMG(properties[properties.length - 1]);
                 } else {
-                  setSelectedIMG(galleryImages[selectedIndex + 1]);
+                  setSelectedIMG(properties[selectedIndex + 1]);
                 }
               }}
-            />
-            <div className="relative w-full h-3/4">
+            /> */}
+            <div className="relative w-full h-5/6 mx-2 mt-auto mb-10">
+              <p className="absolute left-1/2 -top-14 -translate-x-1/2 italic">
+                {selectedIMG.caption}
+              </p>
               <Image
                 priority
                 layout="fill"
                 objectFit="contain"
-                src={selectedIMG.src}
+                src={urlFor(selectedIMG.image).url()}
                 alt=""
               />
             </div>
           </div>
         )}
-        {/*  */}
         <section>
-          <PageHeader title={"Gallery"} info={"Showcase of work"} />
+          <PageHeader title={"Gallery"} info={""} />
 
           <div className="grid grid-cols-2 sm:grid-cols-3  gap-y-1 gap-x-1 justify-center items-center mt-5">
-            {galleryImages.map((img) => (
+            {properties.map((img) => (
               <motion.div
                 className="relative rounded-sm min-w-[100px] w-full h-full overflow-hidden mx-auto p-3 cursor-pointer"
                 key={img.src}
@@ -97,16 +89,19 @@ function Gallery() {
                 }}
                 onClick={() => setSelectedIMG(img)}
               >
-                <div>
+                <div className="overflow-hidden">
                   <Image
                     width={"100%"}
                     height={"100%"}
                     layout="responsive"
                     objectFit="cover"
                     b
-                    src={img.src}
+                    src={urlFor(img.image).url()}
                     alt={img.caption}
                   />
+                  <p className=" text-center pt-1 text-black text-sm md:text-lg font-bold">
+                    {img.caption}
+                  </p>
                 </div>
               </motion.div>
             ))}
@@ -116,5 +111,25 @@ function Gallery() {
     </div>
   );
 }
+
+export const getServerSideProps = async () => {
+  const query = '*[_type == "images"]';
+
+  const properties = await sanityClient.fetch(query);
+
+  if (!properties.length) {
+    return {
+      props: {
+        properties: [],
+      },
+    };
+  } else {
+    return {
+      props: {
+        properties,
+      },
+    };
+  }
+};
 
 export default Gallery;

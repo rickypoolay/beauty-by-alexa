@@ -11,9 +11,11 @@ import {
   INITIAL_NOT_LOADED,
 } from "../context/page-load-actions";
 import { pageLoadContext } from "../context/page-load-context";
+import { sanityClient } from "../utils/sanity";
 
-export default function Home() {
+export default function Home({ properties }) {
   const { initialLoad, dispatch } = useContext(pageLoadContext);
+  const props = properties[0];
 
   const container = {
     show: {
@@ -49,7 +51,7 @@ export default function Home() {
       </Head>
 
       {/* BACKGROUND FLOWERS */}
-      <div className="absolute  w-[100px] h-[100px] top-[325px] xs:w-[175px] xs:h-[175px] xs:top-[350px] sm:w-[200px] sm:h-[200px] sm:top-[375px] md:w-[300px] md:h-[300px] md:top-[425px] lg:w-[300px] lg:h-[300px] lg:top-[550px]  left-0 -z-30 drop-shadow-md">
+      <div className="absolute  w-[100px] h-[100px] top-[325px] xs:w-[175px] xs:h-[175px] xs:top-[350px] sm:w-[200px] sm:h-[200px] sm:top-[375px] md:w-[300px] md:h-[300px] md:top-[425px] lg:w-[300px] lg:h-[300px] lg:top-[550px] xxxl:hidden left-0 -z-30 drop-shadow-md">
         <Image
           priority
           src={"/images/Flower-2.png"}
@@ -58,7 +60,7 @@ export default function Home() {
           alt=""
         />
       </div>
-      <div className="absolute right-0 w-[125px] h-[125px] top-[280px] xs:w-[175px] xs:h-[175px] xs:top-[300px] sm:w-[250px] sm:h-[250px] sm:top-[200px] md:w-[325px] md:h-[325px] md:top-[225px] lg:w-[400px] lg:h-[400px] drop-shadow-md -z-30">
+      <div className="absolute right-0 w-[125px] h-[125px] top-[280px] xs:w-[175px] xs:h-[175px] xs:top-[300px] sm:w-[250px] sm:h-[250px] sm:top-[200px] md:w-[325px] md:h-[325px] md:top-[225px] lg:w-[400px] lg:h-[400px] xxxl:hidden drop-shadow-md -z-30">
         <Image
           priority
           src={"/images/Flower-1.png"}
@@ -98,17 +100,15 @@ export default function Home() {
           <LeftLine />
         </motion.div>
         <section className="space-y-1">
-          <div className="mb-[7.5rem] mt-[1rem] xs:mb-[10rem] sm:mt-[4rem] md:mb-[15rem] ">
-            <DesktopLanding />
+          <div className="mb-[7.5rem] mt-[1rem] xs:mb-[10rem] sm:mt-[4rem] md:mb-[18rem] ">
+            <DesktopLanding props={props} />
           </div>
 
           <motion.div variants={container} animate="show" initial="hidden">
             <motion.div variants={card}>
               <CardSmall
                 title={"Services"}
-                desc={
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam."
-                }
+                desc={"Find the prices for what you need."}
                 img={
                   "https://images.unsplash.com/photo-1600634999623-864991678406?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"
                 }
@@ -118,9 +118,7 @@ export default function Home() {
             <motion.div variants={card}>
               <CardSmall
                 title={"Gallery"}
-                desc={
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam."
-                }
+                desc={"View images of my work."}
                 img={
                   "https://images.unsplash.com/photo-1620794108927-28b6f31f1a7b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80"
                 }
@@ -130,9 +128,7 @@ export default function Home() {
             <motion.div variants={card} a>
               <CardSmall
                 title={"About"}
-                desc={
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam."
-                }
+                desc={"Learn more about me, Alexa."}
                 img={
                   "https://images.unsplash.com/photo-1578747763484-51b21a33e4fa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1742&q=80"
                 }
@@ -145,3 +141,23 @@ export default function Home() {
     </div>
   );
 }
+
+export const getServerSideProps = async () => {
+  const query = '*[_type == "about"]{contacts}';
+
+  const properties = await sanityClient.fetch(query);
+
+  if (!properties.length) {
+    return {
+      props: {
+        properties: [],
+      },
+    };
+  } else {
+    return {
+      props: {
+        properties,
+      },
+    };
+  }
+};

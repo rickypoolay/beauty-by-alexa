@@ -4,11 +4,14 @@ import IconSocial from "../components/IconSocial";
 import LeftLine from "../components/LeftLine";
 import Navbar from "../components/Navbar";
 import PageHeader from "../components/PageHeader";
-import { FaEnvelope } from "react-icons/fa";
 import { AiFillInstagram, AiFillMail } from "react-icons/ai";
 import { RiMapPin2Fill } from "react-icons/ri";
+import { sanityClient, urlFor } from "../utils/sanity";
+import Footer from "../components/Footer";
 
-function About() {
+function About({ properties }) {
+  const props = properties[0];
+
   return (
     <div>
       <Navbar />
@@ -25,9 +28,7 @@ function About() {
           <div className="mt-5 sm:grid sm:grid-cols-2 sm:mt-20 text-center sm:text-left">
             <div className="mx-auto relative w-2/4 sm:w-4/5 h-72 sm:max-w-sm sm:h-full overflow-hidden rounded-sm order-1 sm:my-auto mb-5">
               <Image
-                src={
-                  "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cG9ydHJhaXR8ZW58MHx8MHx8&auto=format&fit=crop&w=1000&q=60"
-                }
+                src={`${urlFor(props.portraitImage).url()}`}
                 alt=""
                 layout="fill"
                 objectFit="cover"
@@ -36,40 +37,37 @@ function About() {
 
             <div className="text-custom-black">
               {/* Info Container */}
-              <div>
-                <div className="mb-6">
-                  <p className="order-1 mt-auto mb-3 h-auto">Esthetician</p>
-                  <h1 className="leading-[2.75rem] w-full">Alexa Beerman</h1>
+              <div className="sm:min-h-[300px]">
+                <div className="mb-4">
+                  <p className="order-1 mt-auto mb-2 h-auto rounded-full inline-block">
+                    {props.jobTitle}
+                  </p>
+                  <h1 className="leading-[2.75rem] mt-2 w-full">
+                    {props.name}
+                  </h1>
                 </div>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit ut
-                  aliquam, purus sit amet luctus venenatis. Lorem ipsum dolor
-                  sit amet, consectetur adipiscing elit ut aliquam, purus sit
-                  amet luctus venenatis.
-                </p>
+                <p>{props.description}</p>
               </div>
 
               {/* Socials Container */}
-              <div className="mt-10">
-                <h3 className=" sm:text-[2.25rem] mb-2">Socials</h3>
+              <div className="mt-14">
+                <h3 className=" sm:text-[2.25rem] mb-2">Contacts</h3>
                 <div className="space-y-2">
                   <IconSocial
                     icon={<AiFillInstagram className="" />}
-                    text={"@beauty_byalexa_"}
-                    href={"https://www.instagram.com/beauty_byalexa_/"}
+                    text={`@${props.contacts.instagram}`}
+                    href={`https://www.instagram.com/${props.contacts.instagram}/`}
                   />
 
                   <IconSocial
                     icon={<AiFillMail className="" />}
-                    text={"example@example.com"}
+                    text={`${props.contacts.email}`}
                   />
 
                   <IconSocial
                     icon={<RiMapPin2Fill className="sm:-mt-1" />}
-                    text={"5382 Roberts Rd. Hilliard, OH, 43026"}
-                    href={
-                      "https://www.google.com/maps/place/The+Cove+Day+Spa/@40.0049002,-83.1546298,16z/data=!4m5!3m4!1s0x8838913810b6fe47:0x65998491897b689b!8m2!3d40.0044425!4d-83.1521731"
-                    }
+                    text={`${props.contacts.address}`}
+                    href={`${props.contacts.addressLink}`}
                   />
                 </div>
               </div>
@@ -80,5 +78,25 @@ function About() {
     </div>
   );
 }
+
+export const getServerSideProps = async () => {
+  const query = '*[_type == "about"]';
+
+  const properties = await sanityClient.fetch(query);
+
+  if (!properties.length) {
+    return {
+      props: {
+        properties: [],
+      },
+    };
+  } else {
+    return {
+      props: {
+        properties,
+      },
+    };
+  }
+};
 
 export default About;

@@ -1,16 +1,18 @@
 import { ArrowRightIcon } from "@heroicons/react/solid";
 import { AnimatePresence, motion } from "framer-motion";
 import Head from "next/head";
-import Image from "next/image";
 import { useState } from "react";
 import LeftLine from "../components/LeftLine";
 import Navbar from "../components/Navbar";
 import PageHeader from "../components/PageHeader";
 import ServiceCard from "../components/ServiceCard";
 import { servicesData } from "../data";
+import { sanityClient } from "../utils/sanity";
+// import client from "../utils/sanity";
 
-function Services() {
+function Services({ properties }) {
   const [selected, setSelected] = useState(servicesData[0]);
+  console.log(properties);
 
   return (
     <div>
@@ -24,10 +26,7 @@ function Services() {
       <main>
         <LeftLine />
         <section>
-          <PageHeader
-            title={"Services"}
-            info={"Find the prices you like for the the things you need."}
-          />
+          <PageHeader title={"Services"} />
           <div className="flex space-x-10 overflow-x-auto overflow-y-hidden p-2 text-custom-black text-xl sticky top-16 mb-5 whitespace-nowrap border-b border-custom-black z-20 bg-custom-background">
             {/* maps every object/category creating a button. Within this button it has an onclick of setting that specific category object of data to send to the useState 'selected'.*/}
 
@@ -74,5 +73,26 @@ function Services() {
     </div>
   );
 }
+
+// export const getServerSideProps = async () => {
+//   const query =
+//     '*[ _type == "services"]{displayTitle, image ->, description, price, category ->}';
+
+//   const properties = await sanityClient.fetch(query);
+
+//   if (!properties.length) {
+//     return {
+//       props: {
+//         properties: [],
+//       },
+//     };
+//   } else {
+//     return {
+//       props: {
+//         properties,
+//       },
+//     };
+//   }
+// };
 
 export default Services;

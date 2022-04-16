@@ -118,43 +118,46 @@ function Navbar() {
         </h1>
 
         {/* Desktop List */}
-        <div className="hidden sm:flex  space-x-5 items-center -order-1">
+        <div className="hidden sm:flex space-x-5 items-center -order-1">
           <button
             onClick={() => router.push("/")}
-            className="cursor-pointer font-extralight"
+            className={`cursor-pointer font-light ${
+              router.pathname == "/" && "underline"
+            }`}
           >
             Home
           </button>
           <button
             onClick={() => router.push("/services")}
-            className="font-extralight cursor-pointer"
+            className={`font-light cursor-pointer ${
+              router.pathname == "/services" && "underline"
+            }`}
           >
             Services
           </button>
           <button
             onClick={() => router.push("/gallery")}
-            className="font-extralight cursor-pointer"
+            className={`font-light cursor-pointer ${
+              router.pathname == "/gallery" && "underline"
+            }`}
           >
             Gallery
           </button>
         </div>
-        <ul className="hidden sm:flex font-extralight space-x-3 justify-end items-center">
+        <ul className="hidden sm:flex font-light space-x-3 justify-end items-center">
           <button
             onClick={() => router.push("/about")}
-            className="font-extralight cursor-pointer"
+            className={`font-light cursor-pointer ${
+              router.pathname == "/about" && "underline"
+            }`}
           >
             About
           </button>
-
-          {/* <Link
-            passHref
-            href={
-              "https://squareup.com/appointments/book/5srybhzsglb2ob/LVVGPZWA4433S/start"
-            }
-          > */}
           <button
-            className="button px-4 py-1"
             onClick={() => router.push("/schedule")}
+            className={`button px-4 py-1 ${
+              router.pathname == "/schedule" && "underline"
+            }`}
           >
             Schedule
           </button>

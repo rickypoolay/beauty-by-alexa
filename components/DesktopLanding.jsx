@@ -7,7 +7,7 @@ import { LocationMarkerIcon } from "@heroicons/react/solid";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-function DesktopLanding() {
+function DesktopLanding({ props }) {
   const router = useRouter();
 
   const { initialLoad, dispatch } = useContext(pageLoadContext);
@@ -61,21 +61,21 @@ function DesktopLanding() {
             rel="noreferrer"
             href="https://www.google.com/maps/place/The+Cove+Day+Spa/@40.0049002,-83.1546298,16z/data=!4m5!3m4!1s0x8838913810b6fe47:0x65998491897b689b!8m2!3d40.0044425!4d-83.1521731"
           >
-            5382 Roberts Rd. Hilliard, OH, 43026 | Cove Day Spa
+            {props.contacts.address}
           </a>
         </motion.div>
 
         {/* Title */}
         <motion.h1 className="flex justify-center sm:justify-start mt-5 mb-1 lg:mt-10 lg:mb-5">
-          {["Beauty", " ", "By", " ", "Alexa"].map((letter) => (
+          {["Beauty", " ", "By", " ", "Alexa"].map((word) => (
             <motion.span
               className={`${
-                letter == " " && "mr-[10px] sm:mr-[14px] md:mr-8"
+                word == " " && "mr-[10px] sm:mr-[14px] md:mr-8"
               } select-none text-[1.75rem] xs:text-[2.85rem] sm:text-[3.75rem] md:text-[4.65rem] lg:text-[6.5rem] xl:text-[8rem] uppercase xl:leading-[150px]`}
               variants={fadeInText}
               key={Math.random()}
             >
-              {letter}
+              {word}
             </motion.span>
           ))}
         </motion.h1>
@@ -91,7 +91,7 @@ function DesktopLanding() {
           }}
           className="mb-4 md:mb-8 mx-auto sm:mx-0 max-w-[275px] xs:max-w-[400px] sm:max-w-[400px] md:max-w-[500px] lg:max-w-[600px]"
         >
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aligiquam.
+          Licensed esthetitican and lash technician.
         </motion.p>
 
         {/* Button */}
@@ -127,5 +127,25 @@ function DesktopLanding() {
     </motion.div>
   );
 }
+
+export const getServerSideProps = async () => {
+  const query = '*[_type == "about"]';
+
+  const properties = await sanityClient.fetch(query);
+
+  if (!properties.length) {
+    return {
+      props: {
+        properties: [],
+      },
+    };
+  } else {
+    return {
+      props: {
+        properties,
+      },
+    };
+  }
+};
 
 export default DesktopLanding;
