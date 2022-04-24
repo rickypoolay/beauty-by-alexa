@@ -1,5 +1,7 @@
 function Footer() {
-  return <footer className="h-20 w-full bg-black">hello</footer>;
+  return (
+    <footer className="h-10 w-full bg-custom-background border-t border-custom-black relative" />
+  );
 }
 
 export default Footer;

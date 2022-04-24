@@ -6,6 +6,7 @@ import CardSmall from "../components/CardSmall";
 import DesktopLanding from "../components/DesktopLanding";
 import LeftLine from "../components/LeftLine";
 import Navbar from "../components/Navbar";
+
 import {
   INITIAL_LOADED,
   INITIAL_NOT_LOADED,

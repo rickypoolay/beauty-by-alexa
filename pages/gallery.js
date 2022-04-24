@@ -12,7 +12,7 @@ function Gallery({ properties }) {
   const [selectedIMG, setSelectedIMG] = useState();
 
   return (
-    <div className="relative">
+    <div>
       <Navbar />
       <Head>
         <title>Beauty By Alexa | Gallery</title>
@@ -58,7 +58,7 @@ function Gallery({ properties }) {
                 }
               }}
             /> */}
-            <p className="z-10 absolute left-1/2 top-12 md:top-10 -translate-x-1/2 italic text-custom-black p-2 bg-custom-background rounded-full">
+            <p className="z-10 absolute left-1/2 top-12 md:top-10 -translate-x-1/2 italic text-custom-black p-2 bg-custom-background rounded-md">
               {selectedIMG.caption}
             </p>
             <div className=" relative w-full h-5/6 mx-2 mt-auto mb-10">

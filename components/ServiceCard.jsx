@@ -20,8 +20,8 @@ function ServiceCard({ title, info, price, img }) {
       </div>
 
       <div>
-        <h2 className="mb-2">{title}</h2>
-        <p className="mb-8 lg:text-xl">{info}</p>
+        <h2 className="mb-2 leading-tight">{title}</h2>
+        <p className="mb-8 md:text-xl">{info}</p>
         <p className=" mb-2">${price}</p>
       </div>
     </div>

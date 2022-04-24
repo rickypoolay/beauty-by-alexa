@@ -1,5 +1,3 @@
-import { ArrowRightIcon } from "@heroicons/react/solid";
-import { AnimatePresence, motion } from "framer-motion";
 import Head from "next/head";
 import { useState } from "react";
 import LeftLine from "../components/LeftLine";
@@ -8,7 +6,6 @@ import PageHeader from "../components/PageHeader";
 import ServiceCard from "../components/ServiceCard";
 import { servicesData } from "../data";
 import { sanityClient } from "../utils/sanity";
-// import client from "../utils/sanity";
 
 function Services({ properties }) {
   const [selected, setSelected] = useState(servicesData[0]);
@@ -23,6 +20,7 @@ function Services({ properties }) {
       </Head>
 
       <Navbar />
+
       <main>
         <LeftLine />
         <section>

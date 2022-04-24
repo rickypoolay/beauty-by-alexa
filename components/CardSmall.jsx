@@ -106,7 +106,7 @@ function CardSmall({ title, desc, toRoute, img }) {
       >
         <motion.div className="w-2/3">
           <motion.h3>{title}</motion.h3>
-          {/* {desc && <motion.p className="leading-[17.5px]">{desc}</motion.p>} */}
+          {desc && <motion.p className="leading-[19px]">{desc}</motion.p>}
         </motion.div>
         <motion.div>
           <ArrowRightIcon className="rounded-full border w-8 h-8 p-1 md:mr-10 md:w-10 md:h-10" />

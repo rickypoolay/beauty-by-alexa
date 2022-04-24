@@ -7,7 +7,6 @@ import PageHeader from "../components/PageHeader";
 import { AiFillInstagram, AiFillMail } from "react-icons/ai";
 import { RiMapPin2Fill } from "react-icons/ri";
 import { sanityClient, urlFor } from "../utils/sanity";
-import Footer from "../components/Footer";
 
 function About({ properties }) {
   const props = properties[0];
